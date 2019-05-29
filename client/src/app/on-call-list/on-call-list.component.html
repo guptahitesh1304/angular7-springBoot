@@ -1,0 +1,36 @@
+
+
+<!--div *ngFor="let o of OnCall">
+  {{o.app_name}}
+</div-->
+
+<div class="conatiner" style="padding-top:20px;">  
+  <div class="col-sm-5" style="padding-top:20px;padding-bottom:20px;" >  
+       <input class="form-control" ng-model="filter" type="text" placeholder="Search.......">        
+  </div>  
+</div> 
+    <table class="table table-striped">  
+      <thead class="thead-dark">  
+        <tr>  
+          <th>Application Name</th>  
+          <th>Support Person Name</th>  
+          <th>Mobile No</th>  
+          <th>Role</th>  
+          <th>Call to Person</th> 
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let o of OnCall | filter:filter| paginate: { itemsPerPage: 5, currentPage: p}">  
+          <td>{{o.app_name}}</td>  
+          <td>{{o.support_per_name}}</td>  
+          <td>{{o.phn_num}}</td>  
+          <td>{{o.role}}</td>
+          <td>
+            <button type="button" class="btn btn-info">Call</button>
+          </td>  
+        </tr>  
+      </tbody> 
+      <ul class="pagination">  
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+        </ul> 
+    </table> 
